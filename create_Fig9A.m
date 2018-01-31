@@ -5,7 +5,7 @@
 % 2017, Psych Rev)
 %
 % For questions, bug reports, etc, please email nronaldvdberg@gmail.com
-
+ 
 function create_Fig9A
 
 % parameters
