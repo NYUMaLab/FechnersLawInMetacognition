@@ -9,24 +9,24 @@
 function create_Fig9A
 
 % parameters
-mu_target    = 2;
-sigma_target = 1.25;
-a         = 2;
-b         = 3;
-sigma_mc  = 1;
-nConf = 20; % number of confidence values
+mu_target    = 2;       % mean of target distribution (Gaussian)
+sigma_target = 1.25;    % SD of target distribution (Gaussian)
+a         = 2;          % confidence scale parameter
+b         = 3;          % confidence shift parameter
+sigma_mc  = 1;          % SD of metacognitive noise distribution (Gaussian)
+nConf = 20;             % number of confidence values
 
-% ======= plot 1: internal representation ========
+% ======= computations for plot 1: internal representation ========
 x = linspace(-10,10,100);
-ptarget_x = normpdf(x,mu_target,sigma_target); % gaussian distributions
-pfoil_x = normpdf(x,0,1);
-ptarget_x = ptarget_x/sum(ptarget_x(:))/diff(x(1:2)); % normalize
-pfoil_x = pfoil_x/sum(pfoil_x(:))/diff(x(1:2));
+ptarget_x = normpdf(x,mu_target,sigma_target);        % gaussian distributions
+pfoil_x = normpdf(x,0,1);                             % assumed standard normal without loss of generality
+ptarget_x = ptarget_x/sum(ptarget_x(:))/diff(x(1:2)); % normalize target distribution
+pfoil_x = pfoil_x/sum(pfoil_x(:))/diff(x(1:2));       % normalize foil distribution
 
-% ======= plot 2: decision variable ========
+% ======= computations for plot 2: decision variable ========
 dx = -log(sigma_target) - 1/2.*( ((x-mu_target).^2)./sigma_target.^2 - x.^2);
 
-% ======= plot 3: distribution of d ========
+% ======= computations for plot 3: distribution of d ========
 nSamples = 1e7;
 samples_foil = randn(1,nSamples);
 samples_target = sigma_target.*randn(1,nSamples) + mu_target;
@@ -39,12 +39,12 @@ counts_foil = hist(d_foil,centers_foil);
 counts_target = counts_target/sum(counts_target(:))/diff(centers_target(1:2));
 counts_foil = counts_foil/sum(counts_foil(:))/diff(centers_foil(1:2));
 
-% ======= plot 4: confidence ratings ========
+% ======= computations for plot 4: confidence ratings ========
 % get indices of responses
-idx_CR = d_foil < 0; % correct reject. foil, respond new
-idx_FA = d_foil >=0; % false alarm. foil, respond old
-idx_Miss = d_target < 0; % miss. target, respond new
-idx_Hit = d_target >= 0; % hit. target. respond old
+idx_CR = d_foil < 0;        % correct reject. foil, respond new
+idx_FA = d_foil >=0;        % false alarm. foil, respond old
+idx_Miss = d_target < 0;    % miss. target, respond new
+idx_Hit = d_target >= 0;    % hit. target. respond old
 
 % confidence values
 conf_new = a.*log(abs(d_foil)) + b; 
@@ -78,9 +78,9 @@ pold = pold./sum(pold);
 confBounds = exp(([1.5:9.5]-b)./a);
 confBounds = [-confBounds 0 confBounds];
 
-% ======== plot ===========
-color_foil = [.4 .5 .8]; % foil color
-color_target = [.7 .6 .4]; % target color
+% ======== PLOT ===========
+color_foil = [.4 .5 .8];        % foil color
+color_target = [.7 .6 .4];      % target color
 
 figure
 subplot(2,2,1); hold on
