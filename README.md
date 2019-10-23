@@ -1,7 +1,7 @@
 ## Fechner's Law in Metacognition
 
-These files accompany the paper "Fechner's law in metacognition: a quantitative 
-model of working memory confidence" by Van den Berg, Yoo, Ma (2017, Psych Rev). [(link)](https://www.cns.nyu.edu/malab/static/files/publications/2017%20Van%20den%20Berg%20Yoo%20Ma.pdf)
+These files accompany the paper *Fechner's law in metacognition: a quantitative 
+model of working memory confidence* by Van den Berg, Yoo, Ma (2017, Psych Rev). [\[link\]](https://www.cns.nyu.edu/malab/static/files/publications/2017%20Van%20den%20Berg%20Yoo%20Ma.pdf)
 
 Very brief description of the files (more details are found inside the files):
 
